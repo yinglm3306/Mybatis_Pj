@@ -10,6 +10,7 @@ package com.hc.test;
 import com.hc.dao.UserMapper;
 import com.hc.pojo.User;
 import com.hc.util.MybatisUtil;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,8 +18,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -87,10 +90,75 @@ public  void  TestUserDao(){
 
         SqlSessionFactory sqlSessionFactory05 = MybatisUtil.getInstance().sqlSessionFactory;
         SqlSession sqlSession = sqlSessionFactory05.openSession();
-        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByName("Ëï");
+        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByName("Å·Ñô");
     for (User user:rs) {
         System.out.println(user.toString());
     }
+
+        sqlSession.close();
+    }
+
+
+    @Test
+    public  void  TestUserDao06(){
+
+        SqlSessionFactory sqlSessionFactory06 = MybatisUtil.getInstance().sqlSessionFactory;
+        SqlSession sqlSession = sqlSessionFactory06.openSession();
+        User u = new User();
+        u.setUserRole(1L);
+        u.setUser_name("Ëï");
+        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByNameRole(u);
+        for (User user:rs) {
+            System.out.println(user.toString());
+        }
+
+        sqlSession.close();
+    }
+
+
+    @Test
+    public  void  TestUserDao07(){
+
+        SqlSessionFactory sqlSessionFactory07 = MybatisUtil.getInstance().sqlSessionFactory;
+        SqlSession sqlSession = sqlSessionFactory07.openSession();
+
+
+        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByNameRole2("Ëï",1l);
+        for (User user:rs) {
+            System.out.println(user.toString());
+        }
+
+        sqlSession.close();
+    }
+
+    @Test
+    public  void  TestUserDao08(){
+
+        SqlSessionFactory sqlSessionFactory08 = MybatisUtil.getInstance().sqlSessionFactory;
+        SqlSession sqlSession = sqlSessionFactory08.openSession();
+
+        HashMap map = new HashMap();
+        map.put("user_name","Ëï");
+        map.put("userRole",1);
+        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByNameRole3(map);
+        for (User user:rs) {
+            System.out.println(user.toString());
+        }
+
+        sqlSession.close();
+    }
+
+    @Test
+    public  void  TestUserDao09(){
+
+        SqlSessionFactory sqlSessionFactory09 = MybatisUtil.getInstance().sqlSessionFactory;
+        SqlSession sqlSession = sqlSessionFactory09.openSession();
+
+
+        List<User> rs = sqlSession.getMapper(UserMapper.class).selectUserByNameRole4("Ëï",1l);
+        for (User user:rs) {
+            System.out.println(user.toString());
+        }
 
         sqlSession.close();
     }

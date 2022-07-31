@@ -13,8 +13,34 @@
      </select>
     <select id="selectUserByName" resultType="User" parameterType="String">
         select  id, user_code,user_name,user_password,gender,address from smbms_user where user_name like concat("%",#{userName},"%")
+    </select>
+    <select id="selectUserByNameRole" resultType="User" parameterType="User">
+        select  id, user_code,user_name,user_password,gender,address from smbms_user
+        where user_name like concat("%",#{user_name},"%")
+        and  userRole= #{userRole}
+    </select>
+    <select id="selectUserByNameRole2" resultType="User">
+        select  id, user_code,user_name,user_password,gender,address,userRole from smbms_user
+        where user_name like concat("%",#{user_name},"%")
+        and  userRole= #{userRole}
 
     </select>
+    <select id="selectUserByNameRole3" resultType="User">
+        select  id, user_code,user_name,user_password,gender,address,userRole from smbms_user
+        where user_name like concat("%",#{user_name},"%")
+        and  userRole= #{userRole}
+
+    </select>
+    <select id="selectUserByNameRole4" resultType="User">
+        select  u.id, user_code,user_name,user_password,gender,address,userRole,role_name from smbms_user u , smbms_role r
+        where u.userRole=r.id
+        and   user_name like concat("%",#{user_name},"%")
+        and   userRole= #{userRole}
+
+
+    </select>
+
+
 
 
 

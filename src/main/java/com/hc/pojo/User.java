@@ -27,5 +27,6 @@ public class User {
     private String address;
     private Long userRole;
     private Long created_by;
+    private String role_name;
 
 }

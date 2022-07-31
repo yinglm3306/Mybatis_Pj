@@ -1,8 +1,10 @@
 package com.hc.dao;
 
 import com.hc.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: yingliming
@@ -21,6 +23,43 @@ public interface UserMapper {
      * @return
      */
     public List<User> selectUserByName(String userName);
+
+
+    /**
+     * 对象入参
+     * @param user
+     * @param
+     * @return
+     */
+    public List<User> selectUserByNameRole(User user);
+
+    /**
+     *  注解入参
+     * @param user_name
+     * @param userRole
+     * @return
+     */
+    public List<User> selectUserByNameRole2(@Param("user_name") String user_name, @Param("userRole") Long userRole);
+
+    /**
+     * 对象入参
+     * @param map
+     * @param
+     * @return
+     */
+    public List<User> selectUserByNameRole3(Map map);
+
+
+    /**
+     *  注解入参
+     * @param user_name
+     * @param userRole
+     * @return
+     */
+    public List<User> selectUserByNameRole4(@Param("user_name") String user_name, @Param("userRole") Long userRole);
+
+
+
 
 
 }
