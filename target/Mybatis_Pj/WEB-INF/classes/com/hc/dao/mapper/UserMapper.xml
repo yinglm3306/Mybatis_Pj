@@ -5,9 +5,16 @@
 <mapper namespace="com.hc.dao.UserMapper">
 
 
-<select id="selectUserCount" resultType="int">
-    select count(id) from smbms_user
-</select>
+     <select id="selectUserCount" resultType="int">
+            select count(id) from smbms_user
+     </select>
+     <select id="selectUserList" resultType="User">
+            select * from smbms_user
+     </select>
+    <select id="selectUserByName" resultType="User" parameterType="String">
+        select id,user_code,user_name,user_password,gender,address from smbms_user where user_name like concat("%",#{userName},"%")
+
+    </select>
 
 
 
